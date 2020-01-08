@@ -25,14 +25,6 @@ spec:
     - name: clusterNamespace
       description: The Kubernetes cluster namespace
       default: prod
-    - name: vaultName
-      description: The Key Protect instance name
-    - name: buildSigner
-      description: The build signer name
-    - name: validationSigner
-      description: The validation signer name
-    - name: resourceGroup
-      description: The resource group
   tasks:
     - name: pipeline-build-task
       taskRef:
@@ -49,12 +41,38 @@ spec:
         - name: registryNamespace
           value: $(params.registryNamespace)
         - name: registryRegion
-          value: $(params.registryRegion)
-        - name: vaultName
-          value: $(params.vaultName)
-        - name: buildSigner
-          value: $(params.buildSigner)
-        - name: validationSigner
-          value: $(params.validationSigner)
-        - name: resourceGroup
-          value: $(params.resourceGroup)
+          value: $(params.registryRegion)          
+    - name: pipeline-validate-task
+      runAfter: [pipeline-build-task]
+      taskRef:
+        name: validate-task
+      params:
+        - name: task-pvc
+          value: $(params.pipeline-pvc)
+        - name: repository
+          value: $(params.repository)
+        - name: revision
+          value: $(params.revision)
+        - name: apikey
+          value: $(params.apikey)
+        - name: registryRegion
+          value: $(params.registryRegion)           
+    - name: pipeline-deploy-task
+      runAfter: [pipeline-validate-task]
+      taskRef:
+        name: deploy-task
+      params:
+        - name: task-pvc
+          value: $(params.pipeline-pvc)
+        - name: repository
+          value: $(params.repository)
+        - name: revision
+          value: $(params.revision)
+        - name: apikey
+          value: $(params.apikey)
+        - name: cluster
+          value: $(params.cluster)
+        - name: clusterRegion
+          value: $(params.clusterRegion)
+        - name: clusterNamespace
+          value: $(params.clusterNamespace)

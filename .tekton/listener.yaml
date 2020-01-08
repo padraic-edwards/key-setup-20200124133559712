@@ -50,14 +50,6 @@ spec:
           value: $(params.clusterRegion)
         - name: clusterNamespace
           value: $(params.clusterNamespace)
-        - name: vaultName
-          value: $(params.vaultName)
-        - name: buildSigner
-          value: $(params.buildSigner)
-        - name: validationSigner
-          value: $(params.validationSigner)
-        - name: resourceGroup
-          value: $(params.resourceGroup)
 ---
 apiVersion: tekton.dev/v1alpha1
 kind: TriggerBinding
