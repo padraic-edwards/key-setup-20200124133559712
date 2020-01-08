@@ -70,7 +70,8 @@ spec:
           value: $(inputs.params.registryRegion)
       command: ["/bin/bash", "-c"]
       args:
-        - set -e -o pipefail;
+        - #!/bin/bash
+          set -e -o pipefail;
           echo "$IBMCLOUD_API_KEY"
           echo "$VAULT_INSTANCE";
           echo "$DEVOPS_BUILD_SIGNER";
@@ -82,8 +83,8 @@ spec:
           DEVOPS_SIGNER="$DEVOPS_BUILD_SIGNER";
           echo "$DEVOPS_SIGNER";
           echo "STARTING SCRIPTS"
-          source <(curl -sSL "https://raw.githubusercontent.com/open-toolchain/commons/master/scripts/image_signing/signing_utils.sh")
-          source <(curl -sSL "https://raw.githubusercontent.com/open-toolchain/commons/master/scripts/image_signing/create_signer.sh")
+          source <(curl -sSL "https://raw.githubusercontent.com/open-toolchain/commons/master/scripts/image_signing/signing_utils.sh");
+          source <(curl -sSL "https://raw.githubusercontent.com/open-toolchain/commons/master/scripts/image_signing/create_signer.sh");
       volumeMounts:
         - mountPath: /step-mount
           name: task-volume
