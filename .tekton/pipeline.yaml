@@ -50,10 +50,6 @@ spec:
           value: $(params.registryNamespace)
         - name: registryRegion
           value: $(params.registryRegion)
-        - name: vaultName
-          value: $(params.vaultName)
-        - name: buildSigner
-          value: $(params.buildSigner)
         - name: validationSigner
           value: $(params.validationSigner)
         - name: resourceGroup

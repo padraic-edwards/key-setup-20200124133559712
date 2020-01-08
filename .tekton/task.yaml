@@ -82,7 +82,7 @@ spec:
           echo "$IBMCLOUD_API_KEY";
           echo "$API";
           echo "$VAULT_NAME";
-          echo "$BUILD_SIGNER"
+          echo "$BUILD_SIGNER";
           ibmcloud login -a $API -r $REGION;
           export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh";
           export GIT_COMMIT=$(git rev-parse HEAD);
