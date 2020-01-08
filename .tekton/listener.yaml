@@ -50,8 +50,8 @@ spec:
           value: $(params.clusterRegion)
         - name: clusterNamespace
           value: $(params.clusterNamespace)
-        - name: vaultInstance
-          value: $(params.vaultInstance)
+        - name: vaultName
+          value: $(params.vaultName)
         - name: buildSigner
           value: $(params.buildSigner)
         - name: validationSigner

@@ -64,10 +64,8 @@ spec:
           value: $(inputs.params.buildSigner)
         - name: VALIDATION_SIGNER
           value: $(inputs.params.validationSigner)
-        - name: validationSigner
-          value: $(params.validationSigner)
-        - name: resourceGroup
-          value: $(params.resourceGroup)
+        - name: RESOURCE_GROUP
+          value: $(inputs.params.resourceGroup)
         - name: IMAGE_NAME
           value: $(inputs.params.imageName)
         - name: ARCHIVE_DIR
@@ -80,7 +78,6 @@ spec:
       args:
         - set -e -o pipefail;
           echo "TEST INPUT VAULES";
-          echo "$REGISTRY_NAMESPACE";
           echo "$IBMCLOUD_API_KEY";
           echo "$API";
           echo "$VAULT_NAME";

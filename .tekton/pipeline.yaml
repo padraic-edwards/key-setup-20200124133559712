@@ -25,7 +25,7 @@ spec:
     - name: clusterNamespace
       description: The Kubernetes cluster namespace
       default: prod
-    - name: vaultInstance
+    - name: vaultName
       description: The Key Protect instance name
     - name: buildSigner
       description: The build signer name
@@ -50,8 +50,8 @@ spec:
           value: $(params.registryNamespace)
         - name: registryRegion
           value: $(params.registryRegion)
-        - name: vaultInstance
-          value: $(params.vaultInstance)
+        - name: vaultName
+          value: $(params.vaultName)
         - name: buildSigner
           value: $(params.buildSigner)
         - name: validationSigner
