@@ -85,6 +85,7 @@ spec:
           echo "$DEVOPS_SIGNER";
           echo "STARTING SCRIPTS";
           source <(curl -sSL "https://raw.githubusercontent.com/open-toolchain/commons/master/scripts/image_signing/signing_utils.sh");
+          export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh";
           source create_signer.sh;
       volumeMounts:
         - mountPath: /step-mount
