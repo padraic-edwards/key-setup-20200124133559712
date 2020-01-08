@@ -1,0 +1,81 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: create-signer-task
+spec:
+  inputs:
+    params:
+      - name: task-pvc
+        description: the output pvc
+      - name: repository
+        description: the git repo
+      - name: revision
+        description: the revision
+        default: master
+      - name: apikey
+        description: the ibmcloud api key
+      - name: api
+        description: the ibmcloud api endpoint
+        default: "https://cloud.ibm.com"
+      - name: registryNamespace
+        description: the ibmcloud registry namespace
+      - name: imageName
+        description: the base image name
+        default: "hello-containers-tekton"
+      - name: registryRegion
+        description: the ibmcloud registry region  
+      - name: build_signer
+        description: the build signer      
+  steps:
+    - name: build-docker-image
+      image: ibmcom/pipeline-base-image
+      env:
+        - name: IBM_CLOUD_API_KEY
+          value: $(inputs.params.apikey)
+        - name: IBMCLOUD_TARGET_REGION
+          value: $(inputs.params.registryRegion)
+        - name: REGISTRY_NAMESPACE
+          value: $(inputs.params.registryNamespace)
+        - name: ARCHIVE_DIR
+          value: "/artifacts"
+        - name: BUILD_NUMBER
+          value: "0"
+        - name: GIT_BRANCH
+          value: $(inputs.params.revision)
+        - name: DEVOPS_BUILD_SIGNER
+          value: $(inputs.params.build_signer)
+      command: ["/bin/bash", "-c"]
+      args:
+        - set -e -o pipefail;
+          #!/bin/bash
+          source <(curl -sSL "https://raw.githubusercontent.com/open-toolchain/commons/master/scripts/image_signing/add_docker.sh")
+          # Restore root & repository keys
+          if [ -z "$VAULT_INSTANCE" ]; then
+            echo "No op"
+          else
+            export IBMCLOUD_API_KEY=$IBM_CLOUD_API_KEY;
+            export IBMCLOUD_TARGET_REGION=${IBMCLOUD_TARGET_REGION:-"eu-gb"};
+
+            # if target region is in the 'ibm:yp:<region>' just keep the region part
+            REGION_SUBSET=$(echo "$IBMCLOUD_TARGET_REGION" | awk -F ':' '{print $3;}');
+            if [[ -z "$REGION_SUBSET" ]]; then
+              echo "IBM Cloud Target Region is $IBMCLOUD_TARGET_REGION";
+            else
+              export IBMCLOUD_TARGET_REGION=$REGION_SUBSET;
+              echo "IBM Cloud Target Region is $IBMCLOUD_TARGET_REGION. export IBMCLOUD_TARGET_REGION=$REGION_SUBSET done";
+            fi
+
+            ibmcloud login --apikey "$IBM_CLOUD_API_KEY" -r "$IBMCLOUD_TARGET_REGION";
+            
+            DEVOPS_SIGNER="$DEVOPS_BUILD_SIGNER";
+            source <(curl -sSL "https://raw.githubusercontent.com/open-toolchain/commons/master/scripts/image_signing/signing_utils.sh");
+            source <(curl -sSL "https://raw.githubusercontent.com/open-toolchain/commons/master/scripts/image_signing/create_signer.sh");
+          fi
+      volumeMounts:
+        - mountPath: /artifacts
+          name: task-volume
+  volumes:
+    - name: task-volume
+      persistentVolumeClaim:
+        claimName: $(inputs.params.task-pvc)
+      
