@@ -25,10 +25,6 @@ spec:
     - name: clusterNamespace
       description: The Kubernetes cluster namespace
       default: prod
-    - name: vaultName
-      description: The Key Protect instance name
-    - name: buildSigner
-      description: The build signer name
     - name: validationSigner
       description: The validation signer name
     - name: resourceGroup
