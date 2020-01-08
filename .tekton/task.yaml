@@ -78,6 +78,8 @@ spec:
       args:
         - set -e -o pipefail;
           echo "TEST INPUT VAULES";
+          echo "$IBMCLOUD_API_KEY"
+          echo "$API"
           echo "$VAULT_NAME";
           echo "$BUILD_SIGNER"
           ibmcloud login -a $API -r $REGION;
