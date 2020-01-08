@@ -48,7 +48,7 @@ spec:
     - name: pre-build-check
       image: ibmcom/pipeline-base-image
       env:
-        - name: IBM_CLOUD_API_KEY
+        - name: IBMCLOUD_API_KEY
           value: $(inputs.params.apikey)
         - name: API
           value: $(inputs.params.api)
@@ -69,7 +69,7 @@ spec:
       command: ["/bin/bash", "-c"]
       args:
         - set -e -o pipefail;
-          echo "$IBM_CLOUD_API_KEY"
+          echo "$IBMCLOUD_API_KEY"
           echo "$VAULT_INSTANCE";
           echo "$DEVOPS_BUILD_SIGNER";
           echo "$IBMCLOUD_TARGET_RESOURCE_GROUP";
