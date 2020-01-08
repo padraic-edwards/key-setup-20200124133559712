@@ -78,11 +78,7 @@ spec:
           echo "$REGION";
           export IBMCLOUD_TARGET_REGION=${REGION:-"eu-gb"};
           echo "$IBMCLOUD_TARGET_REGION";
-
-
-        # if target region is in the 'ibm:yp:<region>' just keep the region part
           ibmcloud login --apikey "$IBMCLOUD_API_KEY" -r "$IBMCLOUD_TARGET_REGION";
-        
           DEVOPS_SIGNER="$DEVOPS_BUILD_SIGNER";
           echo "$DEVOPS_SIGNER";
           export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh";
