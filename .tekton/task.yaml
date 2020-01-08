@@ -28,7 +28,7 @@ spec:
         description: The name of the Key Protect instance
       - name: buildSigner
         description: The build signer
-      - name: validation signer
+      - name: validationSigner
         description: The validation signer
       - name: resourceGroup
         description: The resource group
