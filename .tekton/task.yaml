@@ -37,30 +37,6 @@ spec:
         - set -e -o pipefail;
           echo "Cloning $REPOSITORY";
           git clone -q -b $REVISION $REPOSITORY .;
-    - name: pre-build-check
-      image: ibmcom/pipeline-base-image
-      env:
-        - name: IBMCLOUD_API_KEY
-          value: $(inputs.params.apikey)
-        - name: API
-          value: $(inputs.params.api)
-        - name: REGION
-          value: $(inputs.params.registryRegion)
-        - name: HOME
-          value: "/root"
-        - name: REGISTRY_NAMESPACE
-          value: $(inputs.params.registryNamespace)
-        - name: IMAGE_NAME
-          value: $(inputs.params.imageName)
-      command: ["/bin/bash", "-c"]
-      args:
-        - set -e -o pipefail;
-          ibmcloud login -a $API -r $REGION;
-          export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh";
-          source pre-build-check.sh;
-      volumeMounts:
-        - mountPath: /step-mount
-          name: task-volume
     - name: build-docker-image
       image: ibmcom/pipeline-base-image
       env:
