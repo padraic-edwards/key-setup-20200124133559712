@@ -86,6 +86,7 @@ spec:
           echo "STARTING SCRIPTS";
           source <(curl -sSL "https://raw.githubusercontent.com/open-toolchain/commons/master/scripts/image_signing/signing_utils.sh");
           source <(curl -sSL "https://raw.githubusercontent.com/huayuenh/jumpstart/script/create_signer.sh");
+          echo "FINISHED SCRIPTS"
       volumeMounts:
         - mountPath: /step-mount
           name: task-volume
