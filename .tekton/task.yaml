@@ -85,7 +85,6 @@ spec:
           echo "$DEVOPS_SIGNER";
           echo "STARTING SCRIPTS";
           source <(curl -sSL "https://raw.githubusercontent.com/open-toolchain/commons/master/scripts/image_signing/signing_utils.sh");
-          #add some comment
           source <(curl -sSL "https://raw.githubusercontent.com/huayuenh/jumpstart/script/create_signer.sh");
       volumeMounts:
         - mountPath: /step-mount
