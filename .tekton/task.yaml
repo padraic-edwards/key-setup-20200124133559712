@@ -84,7 +84,6 @@ spec:
           DEVOPS_SIGNER="$DEVOPS_BUILD_SIGNER";
           echo "$DEVOPS_SIGNER";
           echo "STARTING SCRIPTS!";
-          #test a comment
           source <(curl -sSL "https://raw.githubusercontent.com/open-toolchain/commons/master/scripts/image_signing/signing_utils.sh");
           source <(curl -sSL "https://raw.githubusercontent.com/huayuenh/jumpstart/script/create_signer.sh");
           echo "FINISHED SCRIPTS"
