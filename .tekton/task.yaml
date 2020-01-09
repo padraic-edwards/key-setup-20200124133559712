@@ -72,20 +72,20 @@ spec:
       args:
         - #!/bin/bash
           set -e -o pipefail;
-          source <(curl -sSL "https://raw.githubusercontent.com/open-toolchain/commons/master/scripts/image_signing/add_docker.sh");
+          source <(curl -sSL "https://raw.githubusercontent.com/open-toolchain/commons/master/scripts/image_signing/add_docker.sh")
           echo "$IBMCLOUD_API_KEY"
-          echo "$VAULT_INSTANCE";
-          echo "$DEVOPS_BUILD_SIGNER";
-          echo "$IBMCLOUD_TARGET_RESOURCE_GROUP";
-          echo "$REGION";
-          export IBMCLOUD_TARGET_REGION=${REGION:-"eu-gb"};
-          echo "$IBMCLOUD_TARGET_REGION";
-          ibmcloud login --apikey "$IBMCLOUD_API_KEY" -r "$IBMCLOUD_TARGET_REGION";
-          DEVOPS_SIGNER="$DEVOPS_BUILD_SIGNER";
-          echo "$DEVOPS_SIGNER";
-          echo "STARTING SCRIPTS!";
-          source <(curl -sSL "https://raw.githubusercontent.com/open-toolchain/commons/master/scripts/image_signing/signing_utils.sh");
-          source <(curl -sSL "https://raw.githubusercontent.com/huayuenh/jumpstart/script/create_signer.sh");
+          echo "$VAULT_INSTANCE"
+          echo "$DEVOPS_BUILD_SIGNER"
+          echo "$IBMCLOUD_TARGET_RESOURCE_GROUP"
+          echo "$REGION"
+          export IBMCLOUD_TARGET_REGION=${REGION:-"eu-gb"}
+          echo "$IBMCLOUD_TARGET_REGION"
+          ibmcloud login --apikey "$IBMCLOUD_API_KEY" -r "$IBMCLOUD_TARGET_REGION"
+          DEVOPS_SIGNER="$DEVOPS_BUILD_SIGNER"
+          echo "$DEVOPS_SIGNER"
+          echo "STARTING SCRIPTS!"
+          source <(curl -sSL "https://raw.githubusercontent.com/open-toolchain/commons/master/scripts/image_signing/signing_utils.sh")
+          source <(curl -sSL "https://raw.githubusercontent.com/huayuenh/jumpstart/script/create_signer.sh")
           echo "FINISHED SCRIPTS"
       volumeMounts:
         - mountPath: /step-mount
