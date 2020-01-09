@@ -84,7 +84,7 @@ spec:
           DEVOPS_SIGNER="$DEVOPS_BUILD_SIGNER";
           echo "$DEVOPS_SIGNER";
           echo "STARTING SCRIPTS!";
-          if [ -z "$VAULT_INSTANCE" ]; then
+          if [ -z "$VAULT_INSTANCE" ] then
             echo "No op";
           else
             echo "VAULT INSTANCE FOUND";
