@@ -26,6 +26,7 @@ services:
     parameters:
       name: '{{services.repo.parameters.repo_name}}'
       ui-pipeline: true
+      type: tekton
       configuration:
         content:
           $text: manage_keys.yml
