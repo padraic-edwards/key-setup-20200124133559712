@@ -39,6 +39,8 @@ services:
           BUILD_SIGNER: '{{form.pipeline.parameters.build_signer}}'
           VALIDATION_SIGNER: '{{form.pipeline.parameters.validation_signer}}'
           REGISTRY_NAMESPACE: '{{form.pipeline.parameters.registry-namespace}}'
+          REPOSITORY: 'https://github.com/padraic-edwards/tekton-key-managemant'
+          REVISION: master
         execute: true
 form:
   pipeline:
