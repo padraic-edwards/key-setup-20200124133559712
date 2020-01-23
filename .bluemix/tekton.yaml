@@ -16,7 +16,7 @@ triggers:
   eventListener: listener
 properties:
 - name: registryRegion
-  value: ${REGISTRY_REGION_ID}
+  value: ${BUILD_REGION_ID}
   type: text
 - name: registryNamespace
   value: ${REGISTRY_NAMESPACE}
