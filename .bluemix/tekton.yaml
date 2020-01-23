@@ -15,27 +15,21 @@ triggers:
   name: Manual Trigger
   eventListener: listener
 properties:
-- name: apikey
-  value: ${API_KEY}
-  type: SECURE
-- name: cluster
-  value: ${PROD_CLUSTER_NAME}
-  type: text 
-- name: registryNamespace
-  value: ${REGISTRY_NAMESPACE}
-  type: text 
-- name: clusterNamespace
-  value: ${PROD_CLUSTER_NAMESPACE}
-  type: text
-- name: clusterRegion
-  value: ${PROD_REGION_ID}
-  type: text
-- name: registryRegion
+- name: REGISTRY_REGION
   value: ${REGISTRY_REGION_ID}
   type: text
-- name: repository
-  value: ${REPOSITORY}
+- name: REGISTRY_NAMESPACE
+  value: ${REGISTRY_NAMESPACE}
   type: text
-- name: revision
-  value: ${REVISION}
+- name: DEVOPS_BUILD_SIGNER
+  value: ${BUILD_SIGNER}
+  type: text
+- name: DEVOPS_VALIDATION_SIGNER
+  value: ${VALIDATION_SIGNER}
+  type: text
+- name: IBMCLOUD_TARGET_REGION
+  value: ${BUILD_REGION_ID}
+  type: text
+- name: VAULT_INSTANCE
+  value: ${VAULT_INSTANCE}
   type: text
