@@ -42,7 +42,7 @@ properties:
 - name: revision
   value: ${REVISION}
   type: text
-- name: prod-resource-group
+- name: resourceGroup
   value: ${BUILD_RESOURCE_GROUP}
   type: text
   
