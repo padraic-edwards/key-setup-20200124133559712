@@ -29,7 +29,7 @@ services:
       type: tekton
       configuration:
         content:
-          $text: manage_keys.yml
+          $text: tekton.yaml
         env:
           APP_NAME: '{{form.pipeline.parameters.app-name}}'
           API_KEY: '{{form.pipeline.parameters.api-key}}'
@@ -39,7 +39,7 @@ services:
           BUILD_SIGNER: '{{form.pipeline.parameters.build_signer}}'
           VALIDATION_SIGNER: '{{form.pipeline.parameters.validation_signer}}'
           REGISTRY_NAMESPACE: '{{form.pipeline.parameters.registry-namespace}}'
-        execute: false
+        execute: true
 form:
   pipeline:
     parameters:
