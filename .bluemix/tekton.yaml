@@ -15,21 +15,22 @@ triggers:
   name: Manual Trigger
   eventListener: listener
 properties:
-- name: REGISTRY_REGION
+- name: registryRegion
   value: ${REGISTRY_REGION_ID}
   type: text
-- name: REGISTRY_NAMESPACE
+- name: registryNamespace
   value: ${REGISTRY_NAMESPACE}
   type: text
-- name: DEVOPS_BUILD_SIGNER
+- name: buildSigner
   value: ${BUILD_SIGNER}
   type: text
-- name: DEVOPS_VALIDATION_SIGNER
+- name: validationSigner
   value: ${VALIDATION_SIGNER}
   type: text
 - name: IBMCLOUD_TARGET_REGION
   value: ${BUILD_REGION_ID}
   type: text
-- name: VAULT_INSTANCE
+- name: vaultInstance
   value: ${VAULT_INSTANCE}
   type: text
+  
